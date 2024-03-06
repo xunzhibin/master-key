@@ -1,10 +1,10 @@
 {
-    "name": "xunzhibin/master-key",
+    "name": "xzb/master-key",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Xunzhibin\\MasterKey\\": "src/"
+            "Xzb\\MasterKey\\": "src/"
         }
     },
     "authors": [
