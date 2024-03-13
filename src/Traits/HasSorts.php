@@ -151,7 +151,7 @@ trait HasSorts
 	 * 添加 插入 排序
 	 * 
 	 * @param array $data
-	 * @return $data
+	 * @return array
 	 */
 	public function addInsertSort($data)
 	{
@@ -216,7 +216,7 @@ trait HasSorts
 		// 当前 最大排序编号
 		$currentMaxSort = isset(static::$sortCaches[$cacheKey])
 						? static::$sortCaches[$cacheKey]
-						: $this->max($filter, $columnName);
+						: $this->max($columnName, $filter);
 
 		// 自增 +1
 		// 缓存 排序编号 预防批量写入

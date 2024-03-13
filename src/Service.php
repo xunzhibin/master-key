@@ -131,7 +131,7 @@ abstract class Service
 	 * @return object
 	 */
 	public function offsetPaginate(
-		array $keyvalue, string $keyword = null, string $sort = null,
+		array $keyvalue = [], string $keyword = null, string $sort = null,
 		int $perPage = null, $columns = ['*'], $pageName = 'page', int $page = null
 	)
 	{
@@ -149,7 +149,7 @@ abstract class Service
 	 * @param array|string $columns
 	 * @return array 
 	 */
-	public function sole(array $keyvalue, $columns = ['*'])
+	public function sole(array $keyvalue = [], $columns = ['*'])
 	{
 		try {
 			return $this->model->wheres($keyvalue)->sole($columns);
@@ -178,7 +178,7 @@ abstract class Service
 	 * @param array $keyvalue
 	 * @return bool
 	 */
-	public function exists(array $keyvalue)
+	public function exists(array $keyvalue = [])
 	{
 		return $this->model->wheres($keyvalue)->exists();
 	}
@@ -190,7 +190,7 @@ abstract class Service
 	 * @param string $column
 	 * @return mixed
 	 */
-	public function max(array $keyvalue, string $column)
+	public function max(string $column, array $keyvalue = [])
 	{
 		return $this->model->wheres($keyvalue)->max($column);
 	}

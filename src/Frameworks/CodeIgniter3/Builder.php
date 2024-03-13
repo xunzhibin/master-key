@@ -111,6 +111,7 @@ class Builder
 	/**
 	 * 总条数
 	 * 
+	 * @param bool $isResetSelect
 	 * @return int
 	 */
 	public function count($isResetSelect = true)

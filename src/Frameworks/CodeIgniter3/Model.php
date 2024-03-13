@@ -270,7 +270,7 @@ class Model
 	/**
 	 * 添加 更新时间 列
 	 * 
-	 * @param array $values
+	 * @param array $value
 	 * @return array
 	 */
 	public function addUpdatedAtColumn(array $value)
