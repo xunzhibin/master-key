@@ -154,7 +154,7 @@ abstract class Service
 		try {
 			return $this->model->wheres($keyvalue)->sole($columns);
 		} catch (RecordsNotFoundException $e) {
-			$message = 'No query results for model [{' . $model = get_class($this->model) . '}]';
+			$message = 'No query results for model [' . ($model = get_class($this->model)) . ']';
 			throw (new NotExistException($message))->setLabel(Str::snake(basename($model)));
 		}
 	}
