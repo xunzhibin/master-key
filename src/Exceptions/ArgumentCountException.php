@@ -1,7 +1,7 @@
 <?php
 
 // 命名空间
-namespace Xzb\MasterKey\Exceptions;
+namespace Xzb\Exceptions;
 
 /**
  * 参数个数 异常

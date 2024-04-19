@@ -1,7 +1,7 @@
 <?php
 
 // 命名空间
-namespace Xzb\MasterKey\Exceptions;
+namespace Xzb\Exceptions;
 
 /**
  * 找到 多个记录 异常

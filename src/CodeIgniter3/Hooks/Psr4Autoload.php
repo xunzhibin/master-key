@@ -1,11 +1,10 @@
 <?php
 
 // 命名空间
-namespace Xzb\MasterKey\Frameworks\CodeIgniter3;
+namespace Xzb\CodeIgniter3\Hooks;
 
 /**
  * psr4 自动加载
- * 
  */
 class Psr4Autoload
 {
@@ -19,7 +18,7 @@ class Psr4Autoload
 	/**
 	 * 注册
 	 * 
-	 * @
+	 * @return void
 	 */
 	public static function register()
 	{
@@ -55,6 +54,7 @@ class Psr4Autoload
 	 * CI 系统类
 	 * 
 	 * @param string $classname
+	 * @return string
 	 */
 	protected static function systemClass(string $classname)
 	{
@@ -64,7 +64,7 @@ class Psr4Autoload
 				$driverName = mb_substr($fileName, 0, strpos($fileName, $needle = '_'));
 				return BASEPATH . 'database/drivers/' . $driverName . DIRECTORY_SEPARATOR . $fileName . '.php';
 			case 'CI_DB':
-				return APPPATH . 'vendor/xzb/master-key/src/Frameworks/CodeIgniter3/' . $classname . '.php';
+				return APPPATH . 'vendor/xzb/master-key/src/Frameworks/CodeIgniter3/Database/' . $classname . '.php';
 			case 'CI_DB_query_builder':
 			case 'CI_DB_driver':
 				$fileName = ltrim($classname, $ciPrefix = 'CI_');
@@ -73,4 +73,5 @@ class Psr4Autoload
 				return ;
 		}
 	}
+
 }

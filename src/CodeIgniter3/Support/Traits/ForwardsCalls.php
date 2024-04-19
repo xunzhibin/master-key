@@ -1,7 +1,7 @@
 <?php
 
 // 命名空间
-namespace Xzb\MasterKey\Frameworks\CodeIgniter3\Traits;
+namespace Xzb\CodeIgniter3\Support\Traits;
 
 // PHP 异常类
 use BadMethodCallException;
@@ -10,7 +10,6 @@ use Throwable;
 
 /**
  * 呼叫转接
- * 
  */
 trait ForwardsCalls
 {

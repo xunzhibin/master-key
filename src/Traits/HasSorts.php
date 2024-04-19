@@ -44,12 +44,12 @@ trait HasSorts
 	 */
 	protected static $sortCaches = [];
 
-	/**
-	 * 查询 排序
-	 * 
-	 * @var string
-	 */
-	protected $querySort = '-id';
+	// /**
+	//  * 查询 排序
+	//  * 
+	//  * @var string
+	//  */
+	// protected $querySort = '-id';
 
 	/**
 	 * 获取 排序
@@ -124,28 +124,28 @@ trait HasSorts
 		return $this;
 	}
 
-	/**
-	 * 设置 查询排序
-	 * 
-	 * @param string $sort
-	 * @return $this
-	 */
-	public function setQuerySort(string $sort)
-	{
-		$this->querySort = $sort;
+	// /**
+	//  * 设置 查询排序
+	//  * 
+	//  * @param string $sort
+	//  * @return $this
+	//  */
+	// public function setQuerySort(string $sort)
+	// {
+	// 	$this->querySort = $sort;
 
-		return $this;
-	}
+	// 	return $this;
+	// }
 
-	/**
-	 * 获取 查询排序
-	 * 
-	 * @return string
-	 */
-	public function getQuerySort()
-	{
-		return $this->querySort;
-	}
+	// /**
+	//  * 获取 查询排序
+	//  * 
+	//  * @return string
+	//  */
+	// public function getQuerySort()
+	// {
+	// 	return $this->querySort;
+	// }
 
 	/**
 	 * 添加 插入 排序

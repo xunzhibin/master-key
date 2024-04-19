@@ -1,7 +1,7 @@
 <?php
-namespace Xzb\MasterKey\Frameworks\CodeIgniter3;
+namespace Xzb\CodeIgniter3\Core;
 
-use Xzb\Support\Str;
+use Xzb\CodeIgniter3\Support\Str;
 
 /**
  * 路由
@@ -40,6 +40,21 @@ class Router extends \CI_Router
 	 */
 	protected function getModuleRoute()
 	{
+		/**
+		 * URI格式: 平台/用户端/版本号/模块/浏览器/方法
+		 * 
+		 * platform(平台):
+		 * 		前台(frontend)
+		 * 		后台(backend)
+		 * client(客户端/用户端):
+		 * 		api(通用接口)
+		 * 		web(电脑浏览器)
+		 * 		wap(手机浏览器)
+		 * 		wct(wechat 微信应用内部浏览器)
+		 * 		wmp(wechat mini program 微信应用内部小程序)
+		 * version(版本号):
+		 * 		v[1-9]
+		 */
 		list($client, $version, $moduleCode) = sscanf(implode('/', $this->uri->segments), '%[^/]/%[^/]/%[^/]');
 		if (
 			// 客户端 不在指定内
@@ -78,7 +93,7 @@ class Router extends \CI_Router
 					$moduleCode,
 					'controllers',
 					$version,
-					'ci' . str_replace('.', '', CI_VERSION)
+					// 'ci' . str_replace('.', '', CI_VERSION)
 				]);
 				$this->directory = '../' .  $module['root_dir']. ucwords($moduleControllerDir, '/') . '/';
 
@@ -122,7 +137,6 @@ class Router extends \CI_Router
 		$this->config->load('modules', false, true);
 		
 		return (array)$this->config->item('modules');
-
 	}
 
 	/**

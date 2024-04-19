@@ -1,11 +1,10 @@
 <?php
 
 // 命名空间
-namespace Xzb\MasterKey\Frameworks\CodeIgniter3;
+namespace Xzb\CodeIgniter3\Database;
 
 /**
  * 连接
- * 
  */
 class Connection
 {
@@ -28,13 +27,35 @@ class Connection
 	}
 
 	/**
-	 * 获取 路径集合
+	 * 连接 数据库
 	 * 
-	 * @return array
+	 * @param string $group
+	 * @return $this
 	 */
-	public function getPaths()
+	protected function database(string $group = '')
 	{
-		return $paths = get_instance()->load->get_package_paths();
+		// 获取 数据库 配置
+		$params = $this->getDatabaseConfig($group);
+
+		// 实例化 驱动器
+		$driver = 'CI_DB_' . $params['dbdriver'] . '_driver';
+		$DB = new $driver($params);
+
+		// 检查 子驱动器
+		if ( ! empty($DB->subdriver)) {
+			// 实例化 子驱动器
+			$driver = 'CI_DB_' . $DB->dbdriver . '_' . $DB->subdriver . '_driver';
+			$DB = new $driver($params);
+		}
+
+		// 初始化数据库设置
+		$DB->initialize();
+
+		get_instance()->db = '';
+
+		get_instance()->db =& $DB;
+
+		return $this;
 	}
 
 	/**
@@ -43,22 +64,12 @@ class Connection
 	 * @param string $group
 	 * @return array
 	 */
-	public function getDatabaseConfig(string $group = '')
+	protected function getDatabaseConfig(string $group = '')
 	{
-		$filePath = '';
-
-		// 循环
-		foreach ($this->getPaths() as $path) {
-			if (file_exists($envPath = $path . 'config/' . ENVIRONMENT . '/database.php')) {
-				$filePath = $envPath;
-				break;
-			}
-			else if (file_exists($path = $path.'config/database.php')) {
-				$filePath = $path;
-				break;
-			}
-		}
-		if (! $filePath) {
+		if (
+			! file_exists($filePath = APPPATH . 'config/' . ENVIRONMENT . '/database.php')
+			&& ! file_exists($filePath = APPPATH . 'config/database.php')
+		) {
 			show_error('The configuration file database.php does not exist.');
 		}
 
@@ -69,8 +80,9 @@ class Connection
 			show_error('No database connection settings were found in the database config file.');
 		}
 
+		// 配置组
 		if ($group !== '') {
-			$active_group = $params;
+			$active_group = $group;
 		}
 
 		if (! isset($active_group)) {
@@ -81,35 +93,6 @@ class Connection
 		}
 
 		return $db[$active_group];
-	}
-
-	/**
-	 * 连接 数据库
-	 * 
-	 * @param string $group
-	 * @return $this
-	 */
-	public function database(string $group = '')
-	{
-		$params = $this->getDatabaseConfig($group);
-
-		$driver = 'CI_DB_' . $params['dbdriver'] . '_driver';
-
-		$DB = new $driver($params);
-
-		// 检查子驱动程序
-		if ( ! empty($DB->subdriver)) {
-			$driver = 'CI_DB_' . $DB->dbdriver . '_' . $DB->subdriver . '_driver';
-			$DB = new $driver($params);
-		}
-
-		$DB->initialize();
-
-		get_instance()->db = '';
-
-		get_instance()->db =& $DB;
-
-		return $this;
 	}
 
 }

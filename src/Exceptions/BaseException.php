@@ -1,13 +1,13 @@
 <?php
 
 // 命名空间
-namespace Xzb\MasterKey\Exceptions;
+namespace Xzb\Exceptions;
 
 // PHP 运行异常
 use RuntimeException;
 
-// 字符串 类
-use Xzb\Support\Str;
+// 字符串
+use Xzb\CodeIgniter3\Support\Str;
 
 /**
  * 基础 异常类
