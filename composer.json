@@ -3,6 +3,9 @@
     "type": "library",
     "license": "MIT",
     "autoload": {
+        "files": [
+            "src/CodeIgniter3/Core/Common.php"
+        ],
         "psr-4": {
             "Xzb\\": "src/"
         }
